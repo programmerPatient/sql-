@@ -1,7 +1,7 @@
 MySQL学习笔记
 登录和退出MySQL服务器
 # 登录MySQL
-$ mysql -u root -p12345612
+##$ mysql -u root -p12345612
 
 # 退出MySQL数据库服务器
 exit;
