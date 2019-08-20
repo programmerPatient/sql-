@@ -66,8 +66,11 @@ MySQL学习笔记
     DROP TABLE myorder;
 
 建表约束
+
 主键约束
+
 -- 主键约束
+
 -- 使某个字段不重复且不得为空，确保表内所有数据的唯一性。
 
     CREATE TABLE user (
@@ -76,7 +79,9 @@ MySQL学习笔记
     );
 
 -- 联合主键
+
 -- 联合主键中的每个字段都不能为空，并且加起来不能和已设置的联合主键重复。
+
     CREATE TABLE user (
         id INT,
         name VARCHAR(20),
@@ -85,21 +90,29 @@ MySQL学习笔记
     );
 
 -- 自增约束
+
 -- 自增约束的主键由系统自动递增分配。
+
     CREATE TABLE user (
         id INT PRIMARY KEY AUTO_INCREMENT,
         name VARCHAR(20)
     );
 
 -- 添加主键约束
+
 -- 如果忘记设置主键，还可以通过SQL语句设置（两种方式）：
+
     ALTER TABLE user ADD PRIMARY KEY(id);
     ALTER TABLE user MODIFY id INT PRIMARY KEY;
 
 -- 删除主键
-    ALTER TABLE user drop PRIMARY KEY;
+   
+    ALTER TABLE user drop PRIMARY 
+    KEY;
     唯一主键
+
 -- 建表时创建唯一主键
+   
     CREATE TABLE user (
         id INT,
         name VARCHAR(20),
@@ -107,27 +120,37 @@ MySQL学习笔记
     );
 
 -- 添加唯一主键
+
 -- 如果建表时没有设置唯一建，还可以通过SQL语句设置（两种方式）：
+
     ALTER TABLE user ADD UNIQUE(name);
     ALTER TABLE user MODIFY name VARCHAR(20) UNIQUE;
 
 -- 删除唯一主键
+
     ALTER TABLE user DROP INDEX name;
 
 非空约束
+
 -- 建表时添加非空约束
+
 -- 约束某个字段不能为空
+
     CREATE TABLE user (
         id INT,
         name VARCHAR(20) NOT NULL
     );
 
 -- 移除非空约束
+
     ALTER TABLE user MODIFY name VARCHAR(20);
 
 默认约束
+
 -- 建表时添加默认约束
+
 -- 约束某个字段的默认值
+
     CREATE TABLE user2 (
         id INT,
         name VARCHAR(20),
@@ -135,16 +158,20 @@ MySQL学习笔记
     );
 
 -- 移除非空约束
+
     ALTER TABLE user MODIFY age INT;
 
 外键约束
+
 -- 班级
+
     CREATE TABLE classes (
         id INT PRIMARY KEY,
         name VARCHAR(20)
     );
 
 -- 学生表
+
     CREATE TABLE students (
         id INT PRIMARY KEY,
         name VARCHAR(20),
@@ -155,6 +182,7 @@ MySQL学习笔记
     );
 
 -- 1. 主表（父表）classes 中没有的数据值，在副表（子表）students 中，是不可以使用的；
+
 -- 2. 主表中的记录被副表引用时，主表不可以被删除。
 
 数据库的三大设计范式
@@ -167,7 +195,8 @@ MySQL学习笔记
     2NF
     在满足第一范式的前提下，其他列都必须完全依赖于主键列。如果出现不完全依赖，只可能发生在联合主键的情况下：
 
--- 订单表
+    -- 订单表
+
     CREATE TABLE myorder (
         product_id INT,
         customer_id INT,
@@ -221,14 +250,19 @@ MySQL学习笔记
     修改后就不存在其他列之间的传递依赖关系，其他列都只依赖于主键列，满足了第三范式的设计！
 
 查询练习
+
 准备数据
+
 -- 创建数据库
+
     CREATE DATABASE select_test;
 
 -- 切换数据库
+
     USE select_test;
 
 -- 创建学生表
+
     CREATE TABLE student (
         no VARCHAR(20) PRIMARY KEY,
         name VARCHAR(20) NOT NULL,
@@ -238,6 +272,7 @@ MySQL学习笔记
     );
 
 -- 创建教师表
+
     CREATE TABLE teacher (
         no VARCHAR(20) PRIMARY KEY,
         name VARCHAR(20) NOT NULL,
@@ -248,6 +283,7 @@ MySQL学习笔记
     );
 
 -- 创建课程表
+
     CREATE TABLE course (
         no VARCHAR(20) PRIMARY KEY,
         name VARCHAR(20) NOT NULL,
@@ -257,6 +293,7 @@ MySQL学习笔记
     );
 
 -- 成绩表
+
     CREATE TABLE score (
         s_no VARCHAR(20) NOT NULL, -- 学生编号
         c_no VARCHAR(20) NOT NULL, -- 课程号
@@ -269,9 +306,11 @@ MySQL学习笔记
     );
 
 -- 查看所有表
+
     SHOW TABLES;
 
 -- 添加学生表数据
+
     INSERT INTO student VALUES('101', '曾华', '男', '1977-09-01', '95033');
     INSERT INTO student VALUES('102', '匡明', '男', '1975-10-02', '95031');
     INSERT INTO student VALUES('103', '王丽', '女', '1976-01-23', '95033');
@@ -283,6 +322,7 @@ MySQL学习笔记
     INSERT INTO student VALUES('109', '赵铁柱', '男', '1974-06-03', '95031');
 
 -- 添加教师表数据
+
     INSERT INTO teacher VALUES('804', '李诚', '男', '1958-12-02', '副教授', '计算机系');
     INSERT INTO teacher VALUES('856', '张旭', '男', '1969-03-12', '讲师', '电子工程系');
     INSERT INTO teacher VALUES('825', '王萍', '女', '1972-05-05', '助教', '计算机系');
